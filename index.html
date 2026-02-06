@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MatchPoint | LinkedIn Job Discovery</title>
+    <meta name="description" content="High-speed job discovery interface for LinkedIn.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- LinkedIn Top Navigation -->
+    <nav class="linkedin-nav">
+        <div class="nav-content">
+            <div class="nav-left">
+                <img src="matchpoint_logo_icon_1770255140870.png" alt="MatchPoint"
+                    style="height: 34px; border-radius: 4px;">
+                <div class="nav-search">
+                    <i class="fas fa-search"></i>
+                    <span>Search for jobs, companies...</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="nav-item"><i class="fas fa-home"></i><span>Home</span></div>
+                <div class="nav-item"><i class="fas fa-users"></i><span>My Network</span></div>
+                <div class="nav-item active"><i class="fas fa-briefcase"></i><span>Jobs</span></div>
+                <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Messaging</span></div>
+                <div class="nav-item"><i class="fas fa-bell"></i><span>Notifications</span></div>
+                <div class="nav-item">
+                    <div class="nav-profile-placeholder"></div><span>Me</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar-left">
+            <div class="sidebar-card profile-card">
+                <div class="profile-bg"></div>
+                <div class="profile-info">
+                    <div class="profile-avatar"></div>
+                    <h3>User Name</h3>
+                    <p>Product Designer</p>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <ul class="sidebar-links">
+                    <li><i class="fas fa-bookmark"></i> My Jobs</li>
+                    <li><i class="fas fa-list"></i> Job Alerts</li>
+                    <li><i class="fas fa-check-square"></i> Skill Assessments</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area: The MatchPoint Stack -->
+        <main class="content-center">
+            <div class="stack-header">
+                <h2>New Job Matches</h2>
+                <div class="stack-controls">
+                    <div class="filter-pill active">All</div>
+                    <div class="filter-pill">Remote</div>
+                    <div class="filter-pill">$120k+</div>
+                </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="stack-progress-container">
+                <div id="stack-progress" class="stack-progress"></div>
+            </div>
+
+            <div class="card-stack-container">
+                <div id="card-stack" class="card-stack">
+                    <!-- Cards will be injected by JavaScript -->
+                    <div class="stack-placeholder">
+                        <p>No more jobs matches for now!</p>
+                        <button class="retry-btn">Refresh Stack</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Feedback Overlays -->
+                <div id="status-overlay" class="status-overlay">
+                    <div class="status-content">
+                        <i id="status-icon" class="fas"></i>
+                        <span id="status-text"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Swipe Action Buttons (Matching Screenshot) -->
+            <div class="stack-actions">
+                <button class="action-btn circle-btn btn-skip" id="btn-left">
+                    <i class="fas fa-times"></i>
+                    <span>Skip</span>
+                </button>
+                <button class="action-btn circle-btn btn-archive" id="btn-down">
+                    <i class="fas fa-archive"></i>
+                    <span>Archive</span>
+                </button>
+                <button class="action-btn circle-btn btn-apply" id="btn-right">
+                    <i class="fas fa-check"></i>
+                    <span>Apply</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Right Sidebar (Ads/News) -->
+        <aside class="sidebar-right">
+            <div class="sidebar-card">
+                <h4>LinkedIn News</h4>
+                <ul class="news-list">
+                    <li>How to skip the application queue</li>
+                    <li>Top skills for 2026</li>
+                    <li>Design trends in Tech</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Job Details Modal -->
+    <div id="details-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <div id="modal-body"></div>
+            <div class="modal-footer">
+                <button class="apply-btn">Apply Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
