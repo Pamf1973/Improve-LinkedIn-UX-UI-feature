@@ -1,0 +1,97 @@
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    transition: background .4s ease, color .3s ease;
+}
+
+/* Aesthetic-Usability: smooth theme transition */
+[data-theme="dark"] body {
+    background: var(--bg);
+    background-image: radial-gradient(ellipse at 20% 50%, rgba(77,157,224,.04) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 20%, rgba(167,139,250,.04) 0%, transparent 60%);
+}
+
+/* === Keyframes === */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInScale { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse-live { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes toastIn { from { opacity: 0; transform: translateY(16px) scale(.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes toastInRight { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+@keyframes toastOut { to { opacity: 0; transform: translateY(-8px) scale(.95); } }
+@keyframes point-left { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-8px); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+/* Von Restorff Effect — Save pill subtle pulse */
+@keyframes save-glow {
+    0%, 100% { box-shadow: 0 2px 8px rgba(5,118,66,.15), 0 0 0 0 rgba(52,168,83,.2); }
+    50% { box-shadow: 0 3px 12px rgba(5,118,66,.22), 0 0 0 4px rgba(52,168,83,0); }
+}
+@keyframes save-glow-dark {
+    0%, 100% { box-shadow: 0 2px 8px rgba(61,220,132,.15), 0 0 0 0 rgba(61,220,132,.2); }
+    50% { box-shadow: 0 3px 12px rgba(61,220,132,.25), 0 0 0 4px rgba(61,220,132,0); }
+}
+
+/* Peak-End Rule — Celebration */
+@keyframes celebrate-ring {
+    from { transform: scale(0.5); opacity: 1; }
+    to { transform: scale(2); opacity: 0; }
+}
+@keyframes celebrate-bounce {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.05); }
+}
+@keyframes confetti-fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(60px) rotate(720deg); opacity: 0; }
+}
+@keyframes confetti-drift {
+    0% { transform: translate(0, -20px) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--drift-x, 30px), 50px) rotate(var(--drift-r, 360deg)); opacity: 0; }
+}
+
+/* Flow — Streak pulse */
+@keyframes streak-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+@keyframes streak-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(240,180,41,.3); }
+    50% { box-shadow: 0 0 0 10px rgba(240,180,41,0); }
+}
+
+/* Goal-Gradient — Progress shimmer */
+@keyframes progress-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Aesthetic-Usability: micro-interactions */
+button, a { transition: transform .15s var(--ease-spring), box-shadow .2s ease, background .2s ease, color .15s ease, border-color .15s ease; }
+button:active:not(:disabled) { transform: scale(.96); }
+.grid-card:hover, .saved-job-item:hover, .prefs-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+/* Selective Attention: card drag tints */
+.job-card.drag-right { background: linear-gradient(135deg, var(--bg-card) 60%, rgba(68,185,120,.08) 100%); border-color: rgba(68,185,120,.3); }
+.job-card.drag-left { background: linear-gradient(135deg, rgba(204,16,22,.08) 0%, var(--bg-card) 40%); border-color: rgba(204,16,22,.3); }
+.job-card.drag-down { background: linear-gradient(180deg, var(--bg-card) 60%, rgba(124,58,237,.08) 100%); border-color: rgba(124,58,237,.3); }
+[data-theme="dark"] .job-card.drag-right { background: linear-gradient(135deg, var(--bg-card) 60%, rgba(61,220,132,.06) 100%); }
+[data-theme="dark"] .job-card.drag-left { background: linear-gradient(135deg, rgba(255,107,107,.06) 0%, var(--bg-card) 40%); }
+[data-theme="dark"] .job-card.drag-down { background: linear-gradient(180deg, var(--bg-card) 60%, rgba(167,139,250,.06) 100%); }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }

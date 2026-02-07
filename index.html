@@ -4,137 +4,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MatchPoint | LinkedIn Job Discovery</title>
-    <meta name="description" content="High-speed job discovery interface for LinkedIn.">
+    <title>MatchPoint | Live Job Discovery</title>
+    <meta name="description"
+        content="Swipe-based job discovery powered by real listings from Remotive, Jobicy & RemoteOK.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- LinkedIn Top Navigation -->
+    <!-- Navigation -->
     <nav class="linkedin-nav">
         <div class="nav-content">
             <div class="nav-left">
-                <img src="matchpoint_logo_icon_1770255140870.png" alt="MatchPoint"
-                    style="height: 34px; border-radius: 4px;">
+                <button class="mobile-toggle mobile-only" id="menu-toggle" aria-label="Open Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo-mark">
+                    <span class="logo-icon">M</span>
+                    <span class="logo-text">MatchPoint</span>
+                </div>
                 <div class="nav-search">
                     <i class="fas fa-search"></i>
-                    <span>Search for jobs, companies...</span>
+                    <input type="text" id="search-input" placeholder="Search real jobs — try react, python, design...">
                 </div>
             </div>
             <div class="nav-right">
-                <div class="nav-item"><i class="fas fa-home"></i><span>Home</span></div>
-                <div class="nav-item"><i class="fas fa-users"></i><span>My Network</span></div>
-                <div class="nav-item active"><i class="fas fa-briefcase"></i><span>Jobs</span></div>
-                <div class="nav-item"><i class="fas fa-comment-dots"></i><span>Messaging</span></div>
-                <div class="nav-item"><i class="fas fa-bell"></i><span>Notifications</span></div>
-                <div class="nav-item">
-                    <div class="nav-profile-placeholder"></div><span>Me</span>
+                <div class="nav-item" data-view="home"><i class="fas fa-home"></i><span>Home</span></div>
+                <div class="nav-item" data-view="network"><i class="fas fa-users"></i><span>Network</span></div>
+                <div class="nav-item active" data-view="stack"><i class="fas fa-briefcase"></i><span>Jobs</span></div>
+                <div class="nav-item" data-view="messages"><i class="fas fa-comment-dots"></i><span>Messages</span>
                 </div>
+                <div class="nav-item notification-badge" data-count="3" data-view="saved"><i
+                        class="fas fa-bell"></i><span>Alerts</span>
+                </div>
+                <div class="nav-item" id="theme-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></div>
+                <button class="nav-item mobile-only" id="saved-toggle" aria-label="Toggle Saved Jobs">
+                    <i class="fas fa-bookmark"></i>
+                    <span class="nav-badge" id="badge-saved-mobile"></span>
+                </button>
+                <div class="nav-item profile-nav" data-view="preferences">
+                    <div class="nav-avatar">JD</div>
+                    <span>Sign In</span>
+                </div>
+                <div class="nav-item" data-view="preferences"><i class="fas fa-cog"></i></div>
             </div>
         </div>
     </nav>
 
     <div class="main-wrapper">
-        <!-- Sidebar -->
+        <!-- Left Sidebar -->
         <aside class="sidebar-left">
             <div class="sidebar-card profile-card">
                 <div class="profile-bg"></div>
                 <div class="profile-info">
-                    <div class="profile-avatar"></div>
-                    <h3>User Name</h3>
+                    <div class="profile-avatar">JD</div>
+                    <h3>Jane Doe</h3>
                     <p>Product Designer</p>
+                    <button class="connect-linkedin-btn"><i class="fab fa-linkedin"></i> Connect LinkedIn</button>
+                    <div class="profile-stats">
+                        <div class="stat"><span class="stat-num" id="stat-viewed">0</span><span
+                                class="stat-label">Viewed</span></div>
+                        <div class="stat"><span class="stat-num" id="stat-saved">0</span><span
+                                class="stat-label">Saved</span></div>
+                    </div>
                 </div>
             </div>
             <div class="sidebar-card">
                 <ul class="sidebar-links">
-                    <li><i class="fas fa-bookmark"></i> My Jobs</li>
-                    <li><i class="fas fa-list"></i> Job Alerts</li>
-                    <li><i class="fas fa-check-square"></i> Skill Assessments</li>
+                    <li class="sidebar-section-label">GENERAL</li>
+                    <li data-view="stack" class="active">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="link-text">Job Stack</span>
+                        <span class="nav-badge" id="badge-stack"></span>
+                    </li>
+                    <li data-view="saved">
+                        <i class="fas fa-bookmark"></i>
+                        <span class="link-text">Saved Jobs</span>
+                        <span class="nav-badge" id="badge-saved"></span>
+                    </li>
+                    <li class="sidebar-section-label">DISCOVERY</li>
+                    <li data-view="skipped">
+                        <i class="fas fa-times"></i>
+                        <span class="link-text">Skipped</span>
+                        <span class="nav-badge" id="badge-skipped"></span>
+                    </li>
+                    <li data-view="archived">
+                        <i class="fas fa-archive"></i>
+                        <span class="link-text">Archived</span>
+                        <span class="nav-badge" id="badge-archived"></span>
+                    </li>
+                    <li data-view="preferences">
+                        <i class="fas fa-sliders-h"></i>
+                        <span class="link-text">Preferences</span>
+                    </li>
                 </ul>
+            </div>
+            <div class="sidebar-card api-credit">
+                <div class="api-credit-inner">
+                    <span class="live-dot"></span>
+                    <span>Live data from</span>
+                </div>
+                <div class="api-credit-links">
+                    <a href="https://remotive.com" target="_blank" rel="noopener">Remotive</a>
+                    <span>&</span>
+                    <a href="https://jobicy.com" target="_blank" rel="noopener">Jobicy</a>
+                    <span>&</span>
+                    <a href="https://remoteok.com" target="_blank" rel="noopener">RemoteOK</a>
+                </div>
             </div>
         </aside>
 
-        <!-- Main Content Area: The MatchPoint Stack -->
+        <!-- Main Content -->
         <main class="content-center">
-            <div class="stack-header">
-                <h2>New Job Matches</h2>
-                <div class="stack-controls">
-                    <div class="filter-pill active">All</div>
-                    <div class="filter-pill">Remote</div>
-                    <div class="filter-pill">$120k+</div>
-                </div>
-            </div>
-
-            <!-- Progress Indicator -->
-            <div class="stack-progress-container">
-                <div id="stack-progress" class="stack-progress"></div>
-            </div>
-
-            <div class="card-stack-container">
-                <div id="card-stack" class="card-stack">
-                    <!-- Cards will be injected by JavaScript -->
-                    <div class="stack-placeholder">
-                        <p>No more jobs matches for now!</p>
-                        <button class="retry-btn">Refresh Stack</button>
+            <!-- === HEADERS (one per view, JS toggles .active) === -->
+            <div class="view-header active" id="header-stack">
+                <div class="header-left">
+                    <h2>Good morning, Jane</h2>
+                    <span class="jobs-count">Explore your personalized job matches for today</span>
+                    <div class="header-actions">
+                        <span class="jobs-counter"><span class="current" id="jobs-current">0</span><span
+                                class="divider">/</span><span id="jobs-total">0</span> matches</span>
+                        <span class="free-badge">Premium Trial</span>
+                        <button class="upgrade-btn" id="upgrade-btn">Upgrade Account</button>
                     </div>
                 </div>
-
-                <!-- Dynamic Feedback Overlays -->
-                <div id="status-overlay" class="status-overlay">
-                    <div class="status-content">
-                        <i id="status-icon" class="fas"></i>
-                        <span id="status-text"></span>
-                    </div>
+                <div class="header-controls">
+                    <button class="filter-pill" data-filter="all" data-active="true">All</button>
+                    <button class="filter-pill" data-filter="fulltime"><i class="fas fa-briefcase"></i>
+                        Full-time</button>
+                    <button class="filter-pill" data-filter="salary"><i class="fas fa-dollar-sign"></i> Has
+                        Salary</button>
+                    <button class="filter-pill" data-filter="recent"><i class="fas fa-star"></i> This Week</button>
                 </div>
             </div>
 
-            <!-- Swipe Action Buttons (Matching Screenshot) -->
-            <div class="stack-actions">
-                <button class="action-btn circle-btn btn-skip" id="btn-left">
-                    <i class="fas fa-times"></i>
-                    <span>Skip</span>
-                </button>
-                <button class="action-btn circle-btn btn-archive" id="btn-down">
-                    <i class="fas fa-archive"></i>
-                    <span>Archive</span>
-                </button>
-                <button class="action-btn circle-btn btn-apply" id="btn-right">
-                    <i class="fas fa-check"></i>
-                    <span>Apply</span>
-                </button>
+            <div class="view-header" id="header-saved">
+                <div class="header-left">
+                    <h2>Saved Jobs</h2>
+                    <span class="jobs-count" id="saved-view-count">0 jobs</span>
+                </div>
+                <div class="header-controls">
+                    <button class="sort-pill active" data-sort="recent"><i class="fas fa-clock"></i> Recent</button>
+                    <button class="sort-pill" data-sort="match"><i class="fas fa-fire"></i> Best Match</button>
+                    <button class="sort-pill" data-sort="salary"><i class="fas fa-arrow-up"></i> Highest Pay</button>
+                </div>
+                <div id="status-filters" class="status-filters">
+                    <button class="status-filter-pill active" data-status="all"><i class="fas fa-th"></i> All <span class="filter-count" data-status="all">0</span></button>
+                    <button class="status-filter-pill" data-status="saved"><i class="fas fa-bookmark"></i> Saved <span class="filter-count" data-status="saved">0</span></button>
+                    <button class="status-filter-pill" data-status="applied"><i class="fas fa-paper-plane"></i> Applied <span class="filter-count" data-status="applied">0</span></button>
+                    <button class="status-filter-pill" data-status="interviewing"><i class="fas fa-comments"></i> Interviewing <span class="filter-count" data-status="interviewing">0</span></button>
+                    <button class="status-filter-pill" data-status="offered"><i class="fas fa-gift"></i> Offered <span class="filter-count" data-status="offered">0</span></button>
+                    <button class="status-filter-pill" data-status="rejected"><i class="fas fa-times-circle"></i> Rejected <span class="filter-count" data-status="rejected">0</span></button>
+                    <button class="status-filter-pill" data-status="accepted"><i class="fas fa-check-circle"></i> Accepted <span class="filter-count" data-status="accepted">0</span></button>
+                </div>
+            </div>
+
+            <div class="view-header" id="header-skipped">
+                <div class="header-left">
+                    <h2>Skipped</h2>
+                    <span class="jobs-count" id="skipped-view-count">0 jobs</span>
+                </div>
+                <div class="header-controls">
+                    <button class="clear-all-btn" id="clear-skipped-btn"><i class="fas fa-trash-alt"></i> Clear
+                        All</button>
+                </div>
+            </div>
+
+            <div class="view-header" id="header-archived">
+                <div class="header-left">
+                    <h2>Archived</h2>
+                    <span class="jobs-count" id="archived-view-count">0 jobs</span>
+                </div>
+                <div class="header-controls">
+                    <button class="clear-all-btn" id="clear-archived-btn"><i class="fas fa-trash-alt"></i> Clear All
+                    </button>
+                </div>
+            </div>
+
+            <div class="view-header" id="header-preferences">
+                <div class="header-left">
+                    <h2>Preferences</h2>
+                    <span class="jobs-count">Customize your job discovery</span>
+                </div>
+            </div>
+
+            <!-- === VIEWS === -->
+
+            <!-- STACK -->
+            <div class="view active" id="view-stack">
+                <div class="stack-progress-container">
+                    <span class="stack-progress-text"><span class="reviewed-num" id="reviewed-count">0</span> of <span
+                            id="reviewed-total">0</span> reviewed</span>
+                    <div class="stack-progress-bar">
+                        <div id="stack-progress" class="stack-progress"></div>
+                    </div>
+                    <span class="stack-progress-pct" id="progress-pct">0%</span>
+                </div>
+
+                <div class="card-stack-container">
+                    <div id="stack-loader" class="stack-loader">
+                        <div class="loader-spinner"></div>
+                        <p>Fetching live jobs...</p>
+                    </div>
+                    <div id="card-stack" class="card-stack"></div>
+                    <div class="swipe-hint swipe-hint-left"><i class="fas fa-times"></i><span>Skip</span></div>
+                    <div class="swipe-hint swipe-hint-right"><i class="fas fa-heart"></i><span>Save</span></div>
+                    <div class="swipe-hint swipe-hint-down"><i class="fas fa-archive"></i><span>Archive</span></div>
+                </div>
+
+                <div class="stack-actions">
+                    <button class="action-btn btn-skip" id="btn-left" aria-label="Skip"><i
+                            class="fas fa-times"></i><span>Skip</span></button>
+                    <button class="action-btn btn-archive" id="btn-down" aria-label="Archive"><i
+                            class="fas fa-archive"></i><span>Archive</span></button>
+                    <button class="action-btn btn-save" id="btn-right" aria-label="Save"><i
+                            class="fas fa-heart"></i><span>Save</span></button>
+                </div>
+                <div class="keyboard-hints">
+                    <span><kbd>&larr;</kbd> Skip</span>
+                    <span><kbd>&darr;</kbd> Archive</span>
+                    <span><kbd>&rarr;</kbd> Save</span>
+                    <span><kbd>Space</kbd> Details</span>
+                </div>
+            </div>
+
+            <!-- SAVED -->
+            <div class="view" id="view-saved">
+                <div id="saved-grid" class="jobs-grid"></div>
+            </div>
+
+            <!-- HOME -->
+            <div class="view" id="view-home">
+                <div class="grid-empty"><i class="fas fa-home"></i>
+                    <h3>Home Feed</h3>
+                    <p>This is a placeholder for your LinkedIn home feed.</p>
+                </div>
+            </div>
+
+            <!-- NETWORK -->
+            <div class="view" id="view-network">
+                <div class="grid-empty"><i class="fas fa-users"></i>
+                    <h3>My Network</h3>
+                    <p>Manage your professional connections here.</p>
+                </div>
+            </div>
+
+            <!-- MESSAGES -->
+            <div class="view" id="view-messages">
+                <div class="grid-empty"><i class="fas fa-comment-dots"></i>
+                    <h3>Messages</h3>
+                    <p>Your conversations will appear here.</p>
+                </div>
+            </div>
+
+            <!-- SKIPPED -->
+            <div class="view" id="view-skipped">
+                <div id="skipped-grid" class="jobs-grid"></div>
+            </div>
+
+            <!-- ARCHIVED -->
+            <div class="view" id="view-archived">
+                <div id="archived-grid" class="jobs-grid"></div>
+            </div>
+
+            <!-- PREFERENCES -->
+            <div class="view" id="view-preferences">
+                <div class="prefs-grid">
+                    <div class="prefs-card">
+                        <h3><i class="fas fa-user-tag"></i> Your Skills</h3>
+                        <p class="prefs-desc">Add skills to improve match accuracy. Press Enter to add.</p>
+                        <div class="skill-input-row">
+                            <input type="text" id="skill-input" placeholder="e.g. React, Figma, Python...">
+                        </div>
+                        <div id="user-skills-tags" class="user-skills-tags"></div>
+                    </div>
+
+                    <div class="prefs-card">
+                        <h3><i class="fas fa-th-large"></i> Job Categories</h3>
+                        <p class="prefs-desc">Select categories to discover relevant jobs</p>
+                        <div id="category-grid" class="category-grid"></div>
+                    </div>
+
+                    <div class="prefs-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Minimum Salary</h3>
+                        <p class="prefs-desc">Only show jobs above this threshold</p>
+                        <div class="salary-range">
+                            <input type="range" id="salary-slider" min="0" max="200000" step="10000" value="0">
+                            <div class="salary-labels">
+                                <span>Any</span>
+                                <span id="salary-display">Any salary</span>
+                                <span>$200K+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="prefs-card">
+                        <h3><i class="fas fa-list-check"></i> Job Types</h3>
+                        <p class="prefs-desc">Which types of positions interest you?</p>
+                        <div id="job-types-grid" class="job-types-grid"></div>
+                    </div>
+
+                    <button class="save-prefs-btn" id="save-prefs-btn">
+                        <i class="fas fa-check-circle"></i> Save Preferences & Refresh Jobs
+                    </button>
+                </div>
             </div>
         </main>
 
-        <!-- Right Sidebar (Ads/News) -->
+        <!-- Right Sidebar -->
         <aside class="sidebar-right">
-            <div class="sidebar-card">
-                <h4>LinkedIn News</h4>
-                <ul class="news-list">
-                    <li>How to skip the application queue</li>
-                    <li>Top skills for 2026</li>
-                    <li>Design trends in Tech</li>
-                </ul>
+            <div class="saved-jobs-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-heart"></i> Saved</h3>
+                    <span class="saved-count" id="saved-count">0</span>
+                </div>
+                <div class="saved-jobs-list" id="saved-jobs-list">
+                    <div class="empty-state">
+                        <i class="fas fa-arrow-left"></i>
+                        <p>Swipe right on jobs you like</p>
+                    </div>
+                </div>
+                <div class="panel-footer" id="panel-footer" style="display:none;">
+                    <button class="apply-all-btn" id="apply-all-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open Next (<span id="easy-apply-count">0</span> saved)
+                    </button>
+                </div>
             </div>
         </aside>
     </div>
 
-    <!-- Job Details Modal -->
+    <!-- Details Modal -->
     <div id="details-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
-            <div class="modal-handle"></div>
-            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <button class="close-modal" aria-label="Close"><i class="fas fa-times"></i></button>
             <div id="modal-body"></div>
             <div class="modal-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="modal-btn btn-skip-modal" id="modal-skip"><i class="fas fa-times"></i> Skip</button>
+                <a class="modal-btn btn-apply-modal" id="modal-apply" href="#" target="_blank" rel="noopener"><i
+                        class="fas fa-external-link-alt"></i> Apply</a>
+                <button class="modal-btn btn-save-modal" id="modal-save"><i class="fas fa-heart"></i> Save</button>
             </div>
         </div>
     </div>
 
+    <!-- Pricing Modal -->
+    <div id="pricing-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content pricing-content">
+            <button class="close-modal pricing-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="pricing-header">
+                <h2>Unlock More Career Potential</h2>
+                <p>Choose the plan that fits your job search needs.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">$0<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 50 Swipes/day</li>
+                        <li><i class="fas fa-check"></i> Save 10 Jobs</li>
+                        <li><i class="fas fa-check"></i> Basic Filters</li>
+                    </ul>
+                    <button class="plan-btn outline">Current Plan</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-tag">Most Popular</div>
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-price">$12<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Unlimited Swipes</li>
+                        <li><i class="fas fa-check"></i> Unlimited Saves</li>
+                        <li><i class="fas fa-check"></i> Advanced Filters</li>
+                        <li><i class="fas fa-check"></i> Salary Insights</li>
+                    </ul>
+                    <button class="plan-btn primary">Upgrade to Pro</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="plan-name">Ultimate</div>
+                    <div class="plan-price">$29<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Auto-Apply Bot</li>
+                        <li><i class="fas fa-check"></i> Resume Review</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                    </ul>
+                    <button class="plan-btn outline">Get Ultimate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skip Feedback Modal -->
+    <div id="skip-feedback-modal" class="modal">
+        <div class="modal-overlay" onclick="document.getElementById('skip-feedback-modal').classList.remove('active')"></div>
+        <div class="modal-content feedback-content">
+            <button class="close-modal" aria-label="Close" onclick="document.getElementById('skip-feedback-modal').classList.remove('active')"><i class="fas fa-times"></i></button>
+            <div id="skip-feedback-body"></div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
     <script src="script.js"></script>
 </body>
 

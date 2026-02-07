@@ -1,0 +1,139 @@
+/* === TOAST — Doherty Threshold (<400ms) === */
+.toast-container { position: fixed; top: 4.5rem; right: 1.25rem; z-index: 3000; display: flex; flex-direction: column; gap: .375rem; pointer-events: none; max-width: 320px; }
+.toast {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text-primary);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+    font-size: .75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: .375rem;
+    animation: toastInRight .25s var(--ease-out);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--glass-border);
+    pointer-events: auto;
+}
+.toast.success { background: linear-gradient(135deg, rgba(68,185,120,.9), rgba(46,204,113,.9)); color: #fff; border-color: transparent; }
+.toast.error { background: linear-gradient(135deg, rgba(204,16,22,.9), rgba(231,76,60,.9)); color: #fff; border-color: transparent; }
+.toast.archive { background: linear-gradient(135deg, rgba(124,58,237,.9), rgba(168,85,250,.9)); color: #fff; border-color: transparent; }
+.toast.skip { background: linear-gradient(135deg, rgba(245,158,11,.9), rgba(251,191,36,.9)); color: #fff; border-color: transparent; }
+
+/* === LOADING === */
+.stack-loader { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--bg-card); border-radius: var(--card-radius); border: 1px solid var(--border); z-index: 200; gap: .875rem; }
+.stack-loader p { font-size: .8125rem; color: var(--text-secondary); font-weight: 500; }
+.loader-spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .7s linear infinite; }
+
+/* ==========================================
+   Peak-End Rule — Enhanced Celebration
+   ========================================== */
+.stack-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border-radius: var(--card-radius);
+    border: 2px dashed var(--border-hover);
+    text-align: center;
+    padding: 2rem;
+}
+.stack-placeholder i:not(.celebration-icon i):not(.confetti-piece) { font-size: 2.5rem; color: var(--text-tertiary); margin-bottom: .75rem; }
+.stack-placeholder h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: .5rem; }
+.stack-placeholder p { color: var(--text-secondary); margin-bottom: 1.25rem; font-size: .875rem; max-width: 280px; }
+.error-state i { color: var(--warning); }
+.retry-btn {
+    padding: .7rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), #0073e6);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+.retry-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--primary-glow); }
+
+/* Celebration */
+.celebration-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 80px;
+    height: 80px;
+}
+.celebration-icon > i {
+    font-size: 2.5rem;
+    color: var(--success-light);
+    animation: celebrate-bounce 1s ease-in-out 1;
+    z-index: 2;
+}
+.confetti-ring {
+    position: absolute;
+    inset: -16px;
+    border: 3px solid var(--success-light);
+    border-radius: 50%;
+    animation: celebrate-ring 1.5s ease-out forwards;
+}
+.confetti-ring:nth-child(2) { animation-delay: .2s; border-color: var(--primary); }
+.confetti-ring:nth-child(3) { animation-delay: .4s; border-color: var(--warning); }
+
+/* Confetti particles */
+.confetti-container {
+    position: absolute;
+    inset: -30px;
+    pointer-events: none;
+    z-index: 1;
+}
+.confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    animation: confetti-drift 1.5s ease-out forwards;
+}
+.confetti-piece:nth-child(1) { background: var(--success-light); left: 10%; top: 50%; --drift-x: -30px; --drift-r: 360deg; }
+.confetti-piece:nth-child(2) { background: var(--primary); left: 30%; top: 30%; --drift-x: -15px; --drift-r: 540deg; animation-delay: .1s; }
+.confetti-piece:nth-child(3) { background: var(--warning); left: 50%; top: 20%; --drift-x: 5px; --drift-r: 720deg; animation-delay: .15s; }
+.confetti-piece:nth-child(4) { background: var(--archive); left: 70%; top: 30%; --drift-x: 20px; --drift-r: 450deg; animation-delay: .2s; }
+.confetti-piece:nth-child(5) { background: var(--error); left: 90%; top: 50%; --drift-x: 35px; --drift-r: 600deg; animation-delay: .1s; }
+.confetti-piece:nth-child(6) { background: var(--success-light); left: 20%; top: 70%; --drift-x: -25px; --drift-r: 300deg; animation-delay: .25s; border-radius: 50%; }
+.confetti-piece:nth-child(7) { background: var(--primary); left: 60%; top: 70%; --drift-x: 15px; --drift-r: 520deg; animation-delay: .3s; border-radius: 50%; }
+.confetti-piece:nth-child(8) { background: var(--warning); left: 80%; top: 60%; --drift-x: 30px; --drift-r: 400deg; animation-delay: .05s; }
+
+/* Stats summary in celebration */
+.celebration-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+.celebration-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.celebration-stat .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.celebration-stat .stat-value.saved { color: var(--success-light); }
+.celebration-stat .stat-value.skipped { color: var(--skip); }
+.celebration-stat .stat-value.archived { color: var(--archive); }
+.celebration-stat .stat-label {
+    font-size: .6875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-weight: 500;
+}
