@@ -48,8 +48,8 @@
                     <span class="nav-badge" id="badge-saved-mobile"></span>
                 </button>
                 <div class="nav-item profile-nav" data-view="preferences">
-                    <div class="nav-avatar">JD</div>
-                    <span>Sign In</span>
+                    <div class="nav-avatar">AM</div>
+                    <span>Me</span>
                 </div>
                 <div class="nav-item" data-view="preferences"><i class="fas fa-cog"></i></div>
             </div>
@@ -62,9 +62,9 @@
             <div class="sidebar-card profile-card">
                 <div class="profile-bg"></div>
                 <div class="profile-info">
-                    <div class="profile-avatar">JD</div>
-                    <h3>Jane Doe</h3>
-                    <p>Product Designer</p>
+                    <div class="profile-avatar">AM</div>
+                    <h3>Alex Morgan</h3>
+                    <p>Senior Software Engineer</p>
                     <button class="connect-linkedin-btn"><i class="fab fa-linkedin"></i> Connect LinkedIn</button>
                     <div class="profile-stats">
                         <div class="stat"><span class="stat-num" id="stat-viewed">0</span><span
@@ -124,7 +124,7 @@
             <!-- === HEADERS (one per view, JS toggles .active) === -->
             <div class="view-header active" id="header-stack">
                 <div class="header-left">
-                    <h2>Good morning, Jane</h2>
+                    <h2>Good morning, Alex</h2>
                     <span class="jobs-count">Explore your personalized job matches for today</span>
                     <div class="header-actions">
                         <span class="jobs-counter"><span class="current" id="jobs-current">0</span><span
@@ -154,13 +154,20 @@
                     <button class="sort-pill" data-sort="salary"><i class="fas fa-arrow-up"></i> Highest Pay</button>
                 </div>
                 <div id="status-filters" class="status-filters">
-                    <button class="status-filter-pill active" data-status="all"><i class="fas fa-th"></i> All <span class="filter-count" data-status="all">0</span></button>
-                    <button class="status-filter-pill" data-status="saved"><i class="fas fa-bookmark"></i> Saved <span class="filter-count" data-status="saved">0</span></button>
-                    <button class="status-filter-pill" data-status="applied"><i class="fas fa-paper-plane"></i> Applied <span class="filter-count" data-status="applied">0</span></button>
-                    <button class="status-filter-pill" data-status="interviewing"><i class="fas fa-comments"></i> Interviewing <span class="filter-count" data-status="interviewing">0</span></button>
-                    <button class="status-filter-pill" data-status="offered"><i class="fas fa-gift"></i> Offered <span class="filter-count" data-status="offered">0</span></button>
-                    <button class="status-filter-pill" data-status="rejected"><i class="fas fa-times-circle"></i> Rejected <span class="filter-count" data-status="rejected">0</span></button>
-                    <button class="status-filter-pill" data-status="accepted"><i class="fas fa-check-circle"></i> Accepted <span class="filter-count" data-status="accepted">0</span></button>
+                    <button class="status-filter-pill active" data-status="all"><i class="fas fa-th"></i> All <span
+                            class="filter-count" data-status="all">0</span></button>
+                    <button class="status-filter-pill" data-status="saved"><i class="fas fa-bookmark"></i> Saved <span
+                            class="filter-count" data-status="saved">0</span></button>
+                    <button class="status-filter-pill" data-status="applied"><i class="fas fa-paper-plane"></i> Applied
+                        <span class="filter-count" data-status="applied">0</span></button>
+                    <button class="status-filter-pill" data-status="interviewing"><i class="fas fa-comments"></i>
+                        Interviewing <span class="filter-count" data-status="interviewing">0</span></button>
+                    <button class="status-filter-pill" data-status="offered"><i class="fas fa-gift"></i> Offered <span
+                            class="filter-count" data-status="offered">0</span></button>
+                    <button class="status-filter-pill" data-status="rejected"><i class="fas fa-times-circle"></i>
+                        Rejected <span class="filter-count" data-status="rejected">0</span></button>
+                    <button class="status-filter-pill" data-status="accepted"><i class="fas fa-check-circle"></i>
+                        Accepted <span class="filter-count" data-status="accepted">0</span></button>
                 </div>
             </div>
 
@@ -403,9 +410,12 @@
 
     <!-- Skip Feedback Modal -->
     <div id="skip-feedback-modal" class="modal">
-        <div class="modal-overlay" onclick="document.getElementById('skip-feedback-modal').classList.remove('active')"></div>
+        <div class="modal-overlay" onclick="document.getElementById('skip-feedback-modal').classList.remove('active')">
+        </div>
         <div class="modal-content feedback-content">
-            <button class="close-modal" aria-label="Close" onclick="document.getElementById('skip-feedback-modal').classList.remove('active')"><i class="fas fa-times"></i></button>
+            <button class="close-modal" aria-label="Close"
+                onclick="document.getElementById('skip-feedback-modal').classList.remove('active')"><i
+                    class="fas fa-times"></i></button>
             <div id="skip-feedback-body"></div>
         </div>
     </div>
