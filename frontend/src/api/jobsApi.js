@@ -1,4 +1,7 @@
-const BASE = '/api';
+// Use environment variable for API base URL in production, fallback to proxy in development
+const BASE = import.meta.env.VITE_API_BASE_URL
+  ? `${import.meta.env.VITE_API_BASE_URL}/api`
+  : '/api';
 
 export async function fetchJobs({ query = '', categories = [], skills = [], filters = {} }) {
   const res = await fetch(`${BASE}/jobs`, {

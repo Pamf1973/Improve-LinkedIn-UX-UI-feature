@@ -2,7 +2,7 @@
 .content-center { display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
 
 /* View Headers */
-.view-header { display: none; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); padding: 1rem 1.25rem; border-radius: var(--card-radius); border: 1px solid var(--glass-border); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; transition: all .3s ease; }
+.view-header { display: none; background: var(--bg-card); padding: 1rem 1.25rem; border-radius: var(--card-radius); border: 3px solid var(--border); box-shadow: var(--shadow-sm); justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; transition: all .3s ease; }
 .view-header.active { display: flex; animation: fadeIn .25s ease; }
 .header-left { display: flex; align-items: center; gap: .875rem; }
 .header-left h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; }
@@ -39,7 +39,7 @@
 .jobs-limit-badge .limit-upgrade:hover { color: var(--primary-hover); text-decoration: underline; }
 
 /* Filter / Sort Pills */
-.filter-pill, .sort-pill { padding: .4rem .875rem; border-radius: 100px; border: 1px solid var(--border); background: var(--bg-card); font-family: inherit; font-size: .75rem; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: all .2s var(--ease-out); display: flex; align-items: center; gap: .3rem; }
+.filter-pill, .sort-pill { padding: .4rem .875rem; border-radius: 100px; border: 2px solid var(--border); background: var(--bg-card); font-family: inherit; font-size: .75rem; font-weight: 500; color: var(--text-secondary); cursor: pointer; transition: all .2s var(--ease-out); display: flex; align-items: center; gap: .3rem; box-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
 .filter-pill i, .sort-pill i { font-size: .6875rem; }
 .filter-pill:hover, .sort-pill:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
 .filter-pill.active, .sort-pill.active { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 2px 8px var(--primary-glow); }
@@ -134,17 +134,17 @@
     height: 100%;
     background: var(--bg-card);
     border-radius: var(--card-radius);
-    border: 1px solid var(--border);
+    border: 3px solid var(--border);
     box-shadow: var(--shadow-md);
     cursor: grab;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: box-shadow .2s, border-color .3s, background .3s;
+    transition: box-shadow .2s, border-color .3s, background .3s, transform .2s;
     user-select: none;
 }
-.job-card:active { cursor: grabbing; }
-.job-card:hover { box-shadow: var(--shadow-lg); }
+.job-card:active { cursor: grabbing; transform: translate(2px, 2px); box-shadow: var(--shadow-sm); }
+.job-card:hover { box-shadow: var(--shadow-lg); transform: translate(-1px, -1px); }
 
 /* Card Hero Photo Header */
 .card-hero {
@@ -289,7 +289,7 @@
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    border: 2px solid var(--border);
+    border: 3px solid var(--border);
     background: var(--bg-card);
     display: flex;
     align-items: center;
@@ -299,7 +299,7 @@
     font-size: 1.25rem;
     box-shadow: var(--shadow-md);
 }
-.action-circle:active { transform: scale(.9); }
+.action-circle:active { transform: translate(2px, 2px); box-shadow: var(--shadow-sm); }
 .action-circle-label {
     font-size: .6875rem;
     font-weight: 600;
@@ -323,7 +323,7 @@
 /* Keyboard Hints — Law of Proximity (grouped closer to buttons) */
 .keyboard-hints { display: flex; justify-content: center; gap: 1.5rem; padding: .25rem; margin-top: .25rem; }
 .keyboard-hints span { font-size: .6875rem; color: var(--text-tertiary); display: flex; align-items: center; gap: .3rem; }
-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 .375rem; background: var(--bg-card); border: 1px solid var(--border-hover); border-radius: 5px; font-family: inherit; font-size: .6875rem; font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: transform .15s; }
+kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 .375rem; background: var(--bg-card); border: 2px solid var(--border); border-radius: 5px; font-family: inherit; font-size: .6875rem; font-weight: 500; box-shadow: 2px 2px 0 rgba(0,0,0,.1); transition: transform .15s; }
 kbd:hover { transform: translateY(-1px); }
 
 /* ==========================================

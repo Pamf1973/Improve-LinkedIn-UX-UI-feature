@@ -18,21 +18,29 @@ load_dotenv()
 
 LINKEDIN_CLIENT_ID = os.getenv("LINKEDIN_CLIENT_ID", "")
 LINKEDIN_CLIENT_SECRET = os.getenv("LINKEDIN_CLIENT_SECRET", "")
-LINKEDIN_REDIRECT_URI = os.getenv("LINKEDIN_REDIRECT_URI", "http://localhost:8000/api/auth/linkedin/callback")
+LINKEDIN_REDIRECT_URI = os.getenv("LINKEDIN_REDIRECT_URI", "http://localhost:8001/api/auth/linkedin/callback")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
+# CORS origins from environment variable
+ALLOWED_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173"
+).split(",")
 
 # In-memory state store (fine for single-process dev; use Redis in production)
 _oauth_states = set()
 
-app = FastAPI(title="MatchPoint API", version="1.0.0")
+app = FastAPI(
+    title="MatchPoint API",
+    version="1.0.0",
+    docs_url="/docs" if ENVIRONMENT == "development" else None,
+    redoc_url="/redoc" if ENVIRONMENT == "development" else None,
+)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

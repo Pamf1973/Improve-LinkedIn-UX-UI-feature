@@ -15,8 +15,6 @@ body {
 /* Aesthetic-Usability: smooth theme transition */
 [data-theme="dark"] body {
     background: var(--bg);
-    background-image: radial-gradient(ellipse at 20% 50%, rgba(77,157,224,.04) 0%, transparent 60%),
-                      radial-gradient(ellipse at 80% 20%, rgba(167,139,250,.04) 0%, transparent 60%);
 }
 
 /* === Keyframes === */
@@ -77,10 +75,10 @@ body {
     100% { background-position: 200% 0; }
 }
 
-/* Aesthetic-Usability: micro-interactions */
+/* Aesthetic-Usability: micro-interactions with neo-brutalist flair */
 button, a { transition: transform .15s var(--ease-spring), box-shadow .2s ease, background .2s ease, color .15s ease, border-color .15s ease; }
-button:active:not(:disabled) { transform: scale(.96); }
-.grid-card:hover, .saved-job-item:hover, .prefs-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+button:active:not(:disabled) { transform: translate(2px, 2px); }
+.grid-card:hover, .saved-job-item:hover, .prefs-card:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-lg); }
 
 /* Selective Attention: card drag tints */
 .job-card.drag-right { background: linear-gradient(135deg, var(--bg-card) 60%, rgba(68,185,120,.08) 100%); border-color: rgba(68,185,120,.3); }
