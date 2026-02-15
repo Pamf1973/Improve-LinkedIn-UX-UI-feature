@@ -1,0 +1,107 @@
+/* MatchPoint — Neo-Brutalist Design System
+   Inspired by: LinkedIn's professional aesthetic + Neo-Brutalist bold design */
+:root {
+    /* LinkedIn Blue */
+    --primary: #0a66c2;
+    --primary-soft: #dce6f1;
+    --primary-hover: #004182;
+    --primary-glow: rgba(10, 102, 194, 0.15);
+    --primary-gradient: linear-gradient(135deg, #0a66c2, #0073e6);
+
+    /* Semantic Colors */
+    --success: #057642;
+    --success-light: #048a4e;
+    --success-soft: #dcefeb;
+    --success-gradient: linear-gradient(135deg, #34a853, #2ecc71);
+    --warning: #f5c75d;
+    --warning-soft: #fff6e0;
+    --error: #cc1016;
+    --error-soft: #fce4e4;
+    --error-gradient: linear-gradient(135deg, #cc1016, #e74c3c);
+    --archive: #5e5e5e;
+    --archive-soft: #f3f2ef;
+    --archive-gradient: linear-gradient(135deg, #7c3aed, #a855f7);
+    --skip: #f5c75d;
+    --skip-soft: #fff6e0;
+    --skip-gradient: linear-gradient(135deg, #f59e0b, #fbbf24);
+
+    /* Backgrounds */
+    --bg: #f3f2ef;
+    --bg-card: #ffffff;
+    --bg-elevated: #ffffff;
+    --bg-hover: #f3f2ef;
+    --bg-active: #dce6f1;
+
+    /* Text */
+    --text-primary: rgba(0, 0, 0, 0.9);
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-tertiary: rgba(0, 0, 0, 0.45);
+
+    /* Borders — Neo-Brutalist (Bold & Visible) */
+    --border: #191919;
+    --border-light: #d4d2cd;
+    --border-hover: #000000;
+
+    /* Shadows — Hard offset shadows (Neo-Brutalist signature) */
+    --shadow-sm: 2px 2px 0 rgba(0, 0, 0, 0.15);
+    --shadow-md: 4px 4px 0 rgba(0, 0, 0, 0.15);
+    --shadow-lg: 6px 6px 0 rgba(0, 0, 0, 0.15);
+    --shadow-xl: 8px 8px 0 rgba(0, 0, 0, 0.15);
+    --shadow-color: 4px 4px 0 var(--primary);
+
+    /* Radii */
+    --card-radius: 8px;
+    --pill-radius: 6px;
+
+    /* Fonts */
+    --font-display: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* Dark Mode — Neo-Brutalist Dark Theme */
+[data-theme="dark"] {
+    --primary: #4d9de0;
+    --primary-soft: rgba(10, 102, 194, 0.18);
+    --primary-hover: #6bb3ed;
+    --primary-glow: rgba(77, 157, 224, 0.25);
+    --primary-gradient: linear-gradient(135deg, #4d9de0, #6bb3ed);
+
+    --success: #3ddc84;
+    --success-light: #3ddc84;
+    --success-soft: rgba(5, 118, 66, 0.2);
+    --success-gradient: linear-gradient(135deg, #3ddc84, #5ef0a0);
+    --warning: #f0b429;
+    --warning-soft: rgba(234, 88, 12, 0.2);
+    --error: #ff6b6b;
+    --error-soft: rgba(204, 16, 22, 0.2);
+    --error-gradient: linear-gradient(135deg, #ff6b6b, #ff8787);
+    --archive: #a78bfa;
+    --archive-soft: rgba(124, 58, 237, 0.2);
+    --archive-gradient: linear-gradient(135deg, #a78bfa, #c4b5fd);
+    --skip: #fbbf24;
+    --skip-soft: rgba(251, 191, 36, 0.2);
+    --skip-gradient: linear-gradient(135deg, #fbbf24, #fcd34d);
+
+    --bg: #0f1113;
+    --bg-card: #1a1e23;
+    --bg-elevated: #20262d;
+    --bg-hover: #1f242a;
+    --bg-active: #132840;
+
+    --text-primary: #e6e7e9;
+    --text-secondary: #b2b8c2;
+    --text-tertiary: #7b8491;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(255, 255, 255, 0.14);
+
+    /* Neo-Brutalist hard shadows for dark mode */
+    --shadow-sm: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 4px 4px 0 rgba(0, 0, 0, 0.4);
+    --shadow-lg: 6px 6px 0 rgba(0, 0, 0, 0.5);
+    --shadow-xl: 8px 8px 0 rgba(0, 0, 0, 0.6);
+}

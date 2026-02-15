@@ -1,0 +1,45 @@
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+    .main-wrapper { grid-template-columns: 1fr 280px; }
+    .sidebar-left { display: none; }
+}
+@media (max-width: 900px) {
+    .main-wrapper { grid-template-columns: 1fr; max-width: 500px; padding-bottom: 72px; }
+    .sidebar-right { position: fixed; right: 0; top: 54px; bottom: 0; width: 300px; background: var(--bg); transform: translateX(100%); transition: transform .3s var(--ease-out); z-index: 900; padding: .75rem; border-left: 1px solid var(--border); }
+    .sidebar-right.open { transform: translateX(0); }
+    .nav-search { display: none; }
+    .card-stack-container { height: 380px; }
+    .prefs-grid { grid-template-columns: 1fr; }
+    .category-grid { grid-template-columns: repeat(2, 1fr); }
+    /* Jakob's Law — Show mobile bottom tab bar */
+    .mobile-tab-bar { display: block; }
+    .sidebar-left { display: none; }
+    /* Slightly smaller circles on tablet */
+    .action-circle { width: 50px; height: 50px; font-size: 1.125rem; }
+    .stack-actions-circular { gap: 1.5rem; }
+}
+@media (max-width: 600px) {
+    .linkedin-nav { padding: 0 .75rem; }
+    .nav-item span { display: none; }
+    .nav-item { padding: .375rem .5rem; }
+    .logo-text { display: none; }
+    .main-wrapper { padding: 0 .75rem; margin: .75rem auto; padding-bottom: 72px; }
+    .view-header { flex-direction: column; align-items: flex-start; }
+    .keyboard-hints { display: none; }
+    .jobs-grid { grid-template-columns: 1fr; }
+    .card-stack-container { height: 340px; }
+    .card-hero { height: 110px; }
+    /* Hide nav arrows on mobile — swipe is primary */
+    .nav-arrow { display: none; }
+    /* Compact circular buttons */
+    .action-circle { width: 48px; height: 48px; font-size: 1rem; }
+    .stack-actions-circular { gap: 1.25rem; padding: .5rem 0; }
+    .action-circle-label { font-size: .6rem; }
+    .celebration-stats { gap: 1rem; }
+    .celebration-stat .stat-value { font-size: 1.25rem; }
+    /* Toast above mobile tab bar */
+    .toast-container { top: auto; right: .75rem; left: .75rem; bottom: 5rem; max-width: 100%; }
+    /* Skip reason modal — more compact on mobile */
+    .skip-reason-overlay { align-items: flex-end; padding: 0; padding-bottom: 5rem; }
+    .skip-reason-modal { border-radius: 16px 16px 0 0; max-width: 100%; }
+}

@@ -1,0 +1,305 @@
+/* === JOBS GRID (Saved / Archived views) === */
+/* Glassmorphism + Canva-inspired card styling */
+
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.grid-empty {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-tertiary);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--card-radius);
+    border: 2px dashed var(--border);
+}
+.grid-empty i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.grid-empty h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: .25rem;
+}
+.grid-empty p { font-size: .875rem; }
+
+/* Individual grid card — glassmorphism + hover lift */
+.grid-card {
+    background: var(--bg-card);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+    transition: transform .25s var(--ease-out), box-shadow .25s ease, border-color .2s ease;
+    animation: fadeIn .3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.grid-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+.grid-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+.grid-card:hover::before { opacity: 1; }
+
+.grid-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.grid-card-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: contain;
+    background: var(--bg);
+    padding: 4px;
+    border: 1px solid var(--border);
+    transition: transform .2s var(--ease-spring);
+}
+.grid-card:hover .grid-card-logo { transform: scale(1.05); }
+
+.grid-card-match {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--success);
+    background: var(--success-soft);
+    padding: .25rem .6rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all .2s ease;
+}
+.grid-card:hover .grid-card-match {
+    background: var(--success-gradient);
+    color: #fff;
+    border-color: transparent;
+}
+
+.grid-card-title {
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+.grid-card-company {
+    font-size: .8125rem;
+    color: var(--text-secondary);
+}
+
+.grid-card-meta {
+    display: flex;
+    gap: .375rem;
+    flex-wrap: wrap;
+}
+.grid-card-meta .meta-tag {
+    font-size: .6875rem;
+    padding: .2rem .5rem;
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.grid-card-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+}
+.skill-chip {
+    font-size: .6875rem;
+    padding: .2rem .5rem;
+    background: var(--bg);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    transition: all .2s ease;
+}
+.skill-chip.match {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Card actions — gradient Apply button */
+.grid-card-actions {
+    display: flex;
+    gap: .5rem;
+    margin-top: auto;
+    padding-top: .75rem;
+    border-top: 1px solid var(--border);
+}
+.grid-apply-btn {
+    flex: 1;
+    padding: .5rem;
+    background: var(--primary-gradient);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: .75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+    text-decoration: none;
+    box-shadow: 0 2px 8px var(--primary-glow);
+}
+.grid-apply-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--primary-glow);
+}
+.grid-action-btn {
+    padding: .5rem .75rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: .6875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+.grid-action-btn.restore {
+    color: var(--primary);
+    border-color: var(--primary-soft);
+}
+.grid-action-btn.restore:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+}
+.grid-action-btn.remove:hover {
+    color: var(--error);
+    border-color: var(--error);
+    background: var(--error-soft);
+}
+
+/* === Cognitive Load: Saved Groups (date-based chunking) === */
+.saved-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.saved-group-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: .25rem;
+    border-bottom: 1px solid var(--border);
+}
+.saved-group-header i {
+    font-size: .8125rem;
+    color: var(--primary);
+}
+.saved-group-label {
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.saved-group-count {
+    font-size: .6875rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    background: var(--bg);
+    padding: .15rem .5rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    margin-left: auto;
+}
+
+/* Clear All button */
+.clear-all-btn {
+    padding: .375rem .875rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+.clear-all-btn:hover {
+    background: var(--error-soft);
+    border-color: var(--error);
+    color: var(--error);
+}
+
+/* Sort pills */
+.sort-pill {
+    padding: .375rem .875rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+}
+.sort-pill:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+.sort-pill.active {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Skip reason badge on grid cards */
+.skip-reason-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    padding: .2rem .5rem;
+    background: var(--skip-soft);
+    color: var(--skip);
+    border: 1px solid var(--skip);
+    border-radius: 6px;
+    font-size: .6875rem;
+    font-weight: 600;
+}
